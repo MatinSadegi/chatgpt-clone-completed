@@ -1,0 +1,132 @@
+/* AuthForm.css */
+.auth-form-container {
+  width: 100%;
+  height: 100%;
+}
+.auth-form {
+  /* این کلاس برای خود تگ form است و استایل خاصی نیاز ندارد */
+  direction: rtl;
+  padding: 16px;
+  border-radius: 15px;
+  background-color: white;
+  max-width: 500px;
+  margin: auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #0e0c16;
+}
+
+.auth-form-content {
+  padding: 0 16px; /* MUI CardContent به صورت پیش‌فرض padding دارد */
+}
+
+/* Typography Styles */
+.auth-form-title {
+  font-size: 1.5rem; /* معادل h4 در MUI */
+  font-weight: 400;
+  line-height: 1.334;
+  margin-top: 16px; /* معادل mt: 2 */
+  margin-bottom: 0;
+}
+
+.auth-form-subtitle {
+  font-size: 14px;
+  /* معادل color="text.secondary" */
+  margin-top: 16px; /* معادل my: 2 */
+  margin-bottom: 16px;
+}
+
+/* TextField Styles */
+.textfield-container {
+  width: 100%;
+  direction: rtl;
+  margin-bottom: 8px; /* فاصله بین فیلد و آیتم بعدی */
+  position: relative;
+  border: 1px solid #0e0c16;
+  border-radius: 10px;
+  margin-top: 20px; /* معادل my: 2 روی TextField */
+}
+
+.textfield-label {
+  font-size: 1rem;
+  /* color: rgba(0, 0, 0, 0.6); */
+  display: block;
+  margin-bottom: 4px;
+}
+
+.textfield-input {
+  width: 100%;
+  box-sizing: border-box; /* برای محاسبه صحیح width با padding و border */
+  font-size: 1.3rem;
+  padding: 11px;
+  border-radius: 4px;
+  border: 1px solid rgba(225, 210, 210, 0.23);
+  background-color: transparent;
+  transition: border-color 200ms ease;
+  font-family: "IranSans", "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.textfield-input:focus {
+  outline: none;
+  border-color: #1976d2; /* رنگ primary.main در حالت focus */
+  box-shadow: 0 0 0 1px #1976d2;
+}
+
+/* استایل برای حالت خطا */
+.textfield-input.error {
+  border-color: #d32f2f; /* رنگ error.main */
+}
+
+.textfield-input.error:focus {
+  border-color: #d32f2f;
+  box-shadow: 0 0 0 1px #d32f2f;
+}
+
+.textfield-helper-text {
+  color: #d32f2f; /* رنگ error.main */
+  font-size: 0.75rem;
+  margin: 3px 14px 0;
+}
+
+/* Actions Styles */
+.auth-form-actions {
+  padding: 32px 16px; /* معادل py: 4, px: 2 */
+}
+
+/* Button Styles */
+.auth-form-button {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  font-family: "IranSans";
+  background-color: #0e0c16;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+  text-decoration: none;
+  border-radius: 15px;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  min-width: 64px;
+  padding: 14px 22px;
+
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.auth-form-button:hover {
+  background-color: #1565c0; /* رنگ primary.dark */
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 3px 10px 0px rgba(0, 0, 0, 0.12);
+}

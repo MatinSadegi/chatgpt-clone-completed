@@ -1,0 +1,45 @@
+/* ChooseLoginSystem.css */
+
+.login-choice-tabs {
+  display: flex;
+  padding: 16px; /* معادل p: 2 */
+  justify-content: space-between;
+  border-bottom: 1px solid #e0e0e0; /* یک خط جداکننده برای زیبایی بیشتر */
+}
+
+.login-choice-tab {
+  /* ریست کردن استایل‌های پیش‌فرض دکمه */
+  background: none;
+  border: none;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+
+  /* استایل‌های اصلی */
+  width: 45%;
+  text-align: center;
+  cursor: pointer;
+  color: #1976d2; /* معادل color: 'primary.main' */
+  padding-bottom: 4px; /* معادل pb: 0.5 */
+
+  /* استایل حالت غیرفعال */
+  opacity: 0.6;
+  border-bottom: 2px solid transparent; /* برای جلوگیری از پرش هنگام فعال شدن */
+
+  /* انیمیشن نرم برای تغییر حالت */
+  transition: opacity 0.3s ease, border-color 0.3s ease;
+}
+
+.login-choice-tab:hover {
+  opacity: 1;
+}
+
+/* استایل حالت فعال */
+.login-choice-tab.active {
+  border-bottom: 2px solid #1976d2; /* معادل borderBottom + borderColor */
+  opacity: 1;
+  font-weight: 600; /* برای تاکید بیشتر روی تب فعال */
+}
+
+.login-form-container {
+  /* این کانتینر برای نظم‌دهی به ساختار است و استایل خاصی نیاز ندارد */
+  padding-top: 8px;
+}

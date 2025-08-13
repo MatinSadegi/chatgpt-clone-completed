@@ -1,0 +1,89 @@
+.chatPage {
+  direction: rtl;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  width: 100%;
+  overflow-x: hidden;
+
+  .wrapper {
+    flex: 1;
+    overflow: scroll;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+    padding: 20px 0px;
+
+    .chat {
+      width: 60%;
+      display: flex;
+      direction: ltr;
+      flex-direction: column;
+      gap: 20px;
+      text-align: right;
+      p,
+      li {
+        margin: 10px 0px;
+        direction: rtl;
+        text-align: right;
+      }
+
+      .message {
+        padding: 20px;
+
+        &.user {
+          background-color: #2c2937;
+          border-radius: 20px;
+          max-width: 80%;
+          align-self: flex-end;
+        }
+      }
+    }
+  }
+}
+
+.loaderDiv {
+  width: 100%;
+
+  display: flex;
+}
+
+.loader {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: block;
+  margin: 10px 20px;
+  position: relative;
+  /* right: 100px; */
+
+  color: #fff;
+  box-sizing: border-box;
+  animation: animloader 1s linear infinite alternate;
+}
+
+@keyframes animloader {
+  0% {
+    box-shadow: -38px -6px, -14px 6px, 14px -6px;
+  }
+  33% {
+    box-shadow: -38px 6px, -14px -6px, 14px 6px;
+  }
+  66% {
+    box-shadow: -38px -6px, -14px 6px, 14px -6px;
+  }
+  100% {
+    box-shadow: -38px 6px, -14px -6px, 14px 6px;
+  }
+}
+.loader2Div {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
