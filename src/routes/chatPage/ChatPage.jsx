@@ -6,6 +6,8 @@ import { IKImage } from "imagekitio-react";
 import Markdown from "react-markdown";
 import "./chatPage.css"; // اطمینان حاصل کنید که این فایل CSS وجود دارد
 import { useGetChats } from "../../hooks/api/chat";
+import { FaStop } from "react-icons/fa6";
+import { FaArrowUp } from "react-icons/fa";
 
 const ChatPage = () => {
   const socket = useSocket();
@@ -28,27 +30,21 @@ const ChatPage = () => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [isBotLoading, setIsBotLoading] = useState(false);
+  const [isBotAnswering, setIsBotAnswering] = useState(false);
   const [limitReached, setLimitReached] = useState(false); // این state را اضافه کنید
   const endRef = useRef(null);
   const effectRan = useRef(false);
   const currentHistoryId = useRef(historyId);
   const isInitialStateSet = useRef(false);
-
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // --- FIX: useEffect جدید برای ریست کردن پرچم ---
-  // این افکت با هر بار تغییر ID در URL، پرچم را ریست می‌کند.
   useEffect(() => {
     isInitialStateSet.current = false;
   }, [existingChatId]); // وابستگی به ID از URL
 
-  // افکت نهایی برای تنظیم اولیه پیام‌ها
   useEffect(() => {
-    // if (isInitialStateSet.current) return;
-    // console.log("red");
-    // اگر ID چت تغییر کرده است (کاربر به چت دیگری رفته)، همه چیز را ریست کن
     if (currentHistoryId.current !== historyId) {
       setMessages([]);
       effectRan.current = false;
@@ -66,17 +62,13 @@ const ChatPage = () => {
         parts: [{ text: "" }],
       };
       setMessages([userMessage, assistantPlaceholder]);
+      setIsBotAnswering(true);
       setIsBotLoading(true);
-
       if (socket) {
         socket.emit("ADD_MESSAGE", { content: initialMessage, historyId });
         clearInitialMessage();
-        console.log(effectRan.current);
-
         effectRan.current = true;
       }
-      console.log("first");
-
       isInitialStateSet.current = true;
     }
     // سناریو ۲: باز کردن یک چت موجود
@@ -115,29 +107,36 @@ const ChatPage = () => {
         return prev;
       });
     };
-
+    const handleMessageEnd = () => {
+      setIsBotAnswering(false);
+      console.log("dsadasd");
+    };
     const handleAuthNeed = () => {
+      console.log("first");
+
       setIsBotLoading(false);
       setLimitReached(true);
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "system",
-          parts: [
-            {
-              text: "محدودیت پیام‌های شما به پایان رسیده. لطفاً ثبت نام کنید.",
-            },
-          ],
-        },
-      ]);
+      // setMessages((prev) => [
+      //   ...prev,
+      //   {
+      //     role: "system",
+      //     parts: [
+      //       {
+      //         text: "محدودیت پیام‌های شما به پایان رسیده. لطفاً ثبت نام کنید.",
+      //       },
+      //     ],
+      //   },
+      // ]);
     };
 
     socket.on("MESSAGE", handleMessageStream);
+    socket.on("MESSAGE_END", handleMessageEnd);
     socket.on("AUTH_NEED", handleAuthNeed);
 
     return () => {
       socket.off("MESSAGE", handleMessageStream);
       socket.off("AUTH_NEED", handleAuthNeed);
+      socket.off("MESSAGE_END", handleMessageEnd);
     };
   }, [socket]);
 
@@ -152,9 +151,19 @@ const ChatPage = () => {
 
     setMessages((prev) => [...prev, userMessage, assistantPlaceholder]);
     setIsBotLoading(true);
+    setIsBotAnswering(true);
 
-    socket.emit("ADD_MESSAGE", { content: text, historyId: historyId });
+    socket.emit("ADD_MESSAGE", { content: text, historyId });
     setInputValue("");
+  };
+
+  const handleStop = (e) => {
+    if (!socket) return;
+    e.preventDefault();
+    socket.emit("CANCEL_MESSAGE");
+
+    setIsBotAnswering(false);
+    // setInputValue("");
   };
 
   if (isHistoryLoading && !isInitialStateSet.current) {
@@ -216,17 +225,28 @@ const ChatPage = () => {
               <a href="/sign-up">ثبت نام</a> کنید.
             </div>
           ) : (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={isBotAnswering ? handleStop : handleSubmit}>
               <input
                 type="text"
                 name="text"
                 placeholder="پیام خود را بنویسید..."
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                disabled={isBotLoading}
+                disabled={isBotLoading || isBotAnswering}
               />
-              <button type="submit" disabled={isBotLoading}>
-                <img src="/arrow.png" alt="Send" />
+              <button
+                type="submit"
+                disabled={isBotLoading}
+                style={{ cursor: isBotLoading ? "auto" : "pointer" }}
+              >
+                {isBotAnswering && !isBotLoading ? (
+                  <FaStop size={18} color="white" />
+                ) : (
+                  <FaArrowUp
+                    size={18}
+                    color={isBotLoading ? "#ffffff66" : "#ffffff"}
+                  />
+                )}
               </button>
             </form>
           )}
