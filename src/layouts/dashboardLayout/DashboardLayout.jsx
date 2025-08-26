@@ -27,45 +27,43 @@ const DashboardLayout = () => {
   //   }
   // }, [user, fingerprint, navigate]);
 
-  const { setFingerprint, setTempToken, tempToken } = useTokens(
-    (state) => state
-  );
+  // const { setFingerprint, setTempToken, tempToken } = useTokens(
+  //   (state) => state
+  // );
 
-  const { mutateAsync } = useGetTempToken();
+  // const { mutateAsync } = useGetTempToken();
 
-  useEffect(() => {
-    const getVisitorId = async () => {
-      try {
-        const fp = await FingerprintJS.load();
-        const result = await fp.get();
-        setFingerprint(result.visitorId);
+  // useEffect(() => {
+  //   const getVisitorId = async () => {
+  //     try {
+  //       const fp = await FingerprintJS.load();
+  //       const result = await fp.get();
+  //       setFingerprint(result.visitorId);
 
-        const res = await mutateAsync({
-          fingerprint: result.visitorId,
-        });
+  //       const res = await mutateAsync({
+  //         fingerprint: result.visitorId,
+  //       });
 
-        setTempToken({
-          accessToken: res.data.access,
-          refreshToken: res.data.refresh,
-        });
-      } catch (error) {
-        console.error("Error getting visitor ID", error);
-      }
-    };
-    if (!auth()) {
-      getVisitorId();
-    }
-  }, []);
+  //       setTempToken({
+  //         accessToken: res.data.access,
+  //         refreshToken: res.data.refresh,
+  //       });
+  //     } catch (error) {
+  //       console.error("Error getting visitor ID", error);
+  //     }
+  //   };
+  //   if (!auth()) {
+  //     getVisitorId();
+  //   }
+  // }, []);
 
   return (
-    <SocketProvider>
-      <div className="dashboardLayout">
-        {/* <div className="content">
+    <div className="dashboardLayout">
+      {/* <div className="content">
           <Outlet />
         </div> */}
-        {/* <div className="menu">{(tempToken || auth()) && <ChatList />}</div> */}
-      </div>
-    </SocketProvider>
+      {/* <div className="menu">{(tempToken || auth()) && <ChatList />}</div> */}
+    </div>
   );
 };
 
