@@ -6,10 +6,16 @@
 
   .menu {
     flex: 1;
+    display: flex;
+
+    @media screen and (max-width: 900px) {
+      display: none;
+    }
   }
 
   .content {
     flex: 4;
+
     background-color: #12101b;
   }
 }

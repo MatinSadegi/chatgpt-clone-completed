@@ -25,6 +25,7 @@
   flex-direction: column;
   height: 100%;
   direction: rtl;
+  width: 100%;
 
   hr {
     border: none;

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 // ۱. ایمپورت کردن فایل CSS جدید
-import "./VerificationForm.css";
+import "./verificationForm.css";
 import { useTokens } from "../../store/turnstileToken";
 
 const VerificationForm = ({
@@ -60,6 +60,7 @@ const VerificationForm = ({
         access: res.data.access,
         refresh: res.data.refresh,
       });
+
       navigate(callbackUrl ? callbackUrl : "/dashboard");
     }
   };

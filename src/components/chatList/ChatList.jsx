@@ -50,7 +50,9 @@ const ChatList = () => {
                 key={chat._id}
                 onClick={() => handleNavigate(chat._id)}
               >
-                <span className="chat-title">{chat.title}</span>
+                <span className="chat-title">
+                  {chat.title.replace(/^"|"$/g, "")}
+                </span>
                 <button
                   className="options-button"
                   onClick={(e) => handleDeleteChat(e, chat._id)}

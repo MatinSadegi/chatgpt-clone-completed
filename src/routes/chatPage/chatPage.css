@@ -52,6 +52,13 @@
   display: flex;
 }
 
+.limitMessage {
+  padding: 20px 0px;
+
+  width: 100%;
+  text-align: center;
+}
+
 .loader {
   width: 10px;
   height: 10px;
