@@ -60,9 +60,9 @@ const DashboardLayout = () => {
   return (
     <SocketProvider>
       <div className="dashboardLayout">
-        <div className="content">
+        {/* <div className="content">
           <Outlet />
-        </div>
+        </div> */}
         {/* <div className="menu">{(tempToken || auth()) && <ChatList />}</div> */}
       </div>
     </SocketProvider>
