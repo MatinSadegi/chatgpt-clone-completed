@@ -9,7 +9,7 @@ export const useSocket = () => {
   return useContext(SocketContext);
 };
 
-export const SocketProvider = ({ children, historyId }) => {
+export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
   const { auth, user, tokens } = useUserStore((state) => state);
   const { tempToken } = useTokens((state) => state);

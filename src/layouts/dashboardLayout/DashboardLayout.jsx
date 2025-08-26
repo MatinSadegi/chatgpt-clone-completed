@@ -14,8 +14,9 @@ import FingerprintJS from "@fingerprintjs/fingerprintjs";
 
 const DashboardLayout = () => {
   const { fingerprint } = useTokens((state) => state);
-  const { historyId } = useChats((state) => state);
+  // const { historyId } = useChats((state) => state);
   const { user, reset, auth } = useUserStore((state) => state);
+  // console.log(historyId);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -38,7 +39,6 @@ const DashboardLayout = () => {
         const fp = await FingerprintJS.load();
         const result = await fp.get();
         setFingerprint(result.visitorId);
-        console.log(result.visitorId);
 
         const res = await mutateAsync({
           fingerprint: result.visitorId,
@@ -58,7 +58,7 @@ const DashboardLayout = () => {
   }, []);
 
   return (
-    <SocketProvider historyId={historyId}>
+    <SocketProvider>
       <div className="dashboardLayout">
         <div className="content">
           <Outlet />
