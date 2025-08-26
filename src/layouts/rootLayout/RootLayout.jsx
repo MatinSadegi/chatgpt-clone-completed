@@ -13,7 +13,7 @@ const RootLayout = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="rootLayout">
-        <header>
+        {/* <header>
           <Link to="/" className="logo">
             <img src="/logo.png" alt="" />
           </Link>
@@ -24,7 +24,7 @@ const RootLayout = () => {
               </Link>
             </div>
           )}
-        </header>
+        </header> */}
         <main>
           <Outlet />
         </main>
