@@ -63,7 +63,7 @@ const DashboardLayout = () => {
         <div className="content">
           <Outlet />
         </div>
-        <div className="menu">{(tempToken || auth()) && <ChatList />}</div>
+        {/* <div className="menu">{(tempToken || auth()) && <ChatList />}</div> */}
       </div>
     </SocketProvider>
   );
