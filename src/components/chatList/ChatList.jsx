@@ -37,32 +37,38 @@ const ChatList = () => {
       <span className="title">داشبورد</span>
       <Link to="/dashboard">ایجاد چت جدید</Link>
       <hr />
-      <span className="title">آخرین چت‌ها</span>
-      <div className="list">
-        {isPending
-          ? "در حال بارگذاری..."
-          : error
-          ? "خطایی رخ داده است!"
-          : data?.results?.map((chat) => (
-              <Link
-                to={`dashboard/chats/${chat._id}`} // <-- مسیر صحیح را اینجا قرار دهید
-                className="resentChat"
-                key={chat._id}
-                onClick={() => handleNavigate(chat._id)}
-              >
-                <span className="chat-title">
-                  {chat.title.replace(/^"|"$/g, "")}
-                </span>
-                <button
-                  className="options-button"
-                  onClick={(e) => handleDeleteChat(e, chat._id)}
-                >
-                  <LuTrash />
-                </button>
-              </Link>
-            ))}
-      </div>
-      <hr />
+      {data?.results?.length > 0 && (
+        <>
+          {" "}
+          <span className="title">آخرین چت‌ها</span>
+          <div className="list">
+            {isPending
+              ? "در حال بارگذاری..."
+              : error
+              ? "خطایی رخ داده است!"
+              : data?.results?.map((chat) => (
+                  <Link
+                    to={`dashboard/chats/${chat._id}`} // <-- مسیر صحیح را اینجا قرار دهید
+                    className="resentChat"
+                    key={chat._id}
+                    onClick={() => handleNavigate(chat._id)}
+                  >
+                    <span className="chat-title">
+                      {chat.title.replace(/^"|"$/g, "")}
+                    </span>
+                    <button
+                      className="options-button"
+                      onClick={(e) => handleDeleteChat(e, chat._id)}
+                    >
+                      <LuTrash />
+                    </button>
+                  </Link>
+                ))}
+          </div>
+          <hr />
+        </>
+      )}
+
       <div className="signup-section">
         {auth() ? (
           <button className="logout-button btn" onClick={() => handleLogout()}>
