@@ -209,7 +209,7 @@ const ChatPage = () => {
                 )}
               </div>
             ))}
-            {!isBotLoading && (
+            {isBotLoading && (
               <div className="loaderDiv">
                 <span className="loader"></span>
               </div>
