@@ -11,8 +11,10 @@ import { useTokens } from "../../store/turnstileToken";
 import { useCreateHistories } from "../../hooks/api/chat";
 import { useGetTempToken } from "../../hooks/api/auth";
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
+import { useUiStore } from "../../store/menu";
 
 const DashboardLayout = () => {
+  const { isMenuOpen, closeMenu } = useUiStore((state) => state);
   const { fingerprint } = useTokens((state) => state);
   // const { historyId } = useChats((state) => state);
   const { user, reset, auth } = useUserStore((state) => state);
@@ -63,7 +65,10 @@ const DashboardLayout = () => {
         <div className="content">
           <Outlet />
         </div>
-        <div className="menu">{(tempToken || auth()) && <ChatList />}</div>
+        {isMenuOpen && <div className="overlay" onClick={closeMenu}></div>}
+        <div className={`menu ${isMenuOpen ? "active" : ""}`}>
+          {(tempToken || auth()) && <ChatList />}
+        </div>
       </div>
     </SocketProvider>
   );

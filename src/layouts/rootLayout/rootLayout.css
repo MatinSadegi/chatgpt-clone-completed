@@ -29,3 +29,10 @@
     overflow: hidden;
   }
 }
+
+.new-chat {
+  cursor: pointer;
+}
+.hamburger-menu {
+  cursor: pointer;
+}
