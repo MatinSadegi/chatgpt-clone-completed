@@ -19,7 +19,7 @@ const RootLayout = () => {
     <QueryClientProvider client={queryClient}>
       <div className="rootLayout">
         <header>
-          {isMobile ? (
+          {isMobile && pathname !== "/" ? (
             <Link to="/dashboard">
               <PiPencilSimpleLineBold size={22} />
             </Link>
