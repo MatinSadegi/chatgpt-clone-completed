@@ -233,6 +233,7 @@ const ChatPage = () => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 disabled={isBotLoading || isBotAnswering}
+                autoComplete="off"
               />
               <button
                 type="submit"

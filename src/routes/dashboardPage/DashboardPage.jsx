@@ -68,6 +68,7 @@ function DashboardPage() {
             name="text"
             placeholder="پیام خود را بنویسید..."
             disabled={isLoading}
+            autoComplete="off"
           />
           <button type="submit" disabled={isLoading}>
             <img src="/arrow.png" alt="Send" />
