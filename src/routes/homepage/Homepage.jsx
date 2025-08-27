@@ -2,14 +2,18 @@ import { Link, useNavigate } from "react-router-dom";
 import "./homepage.css";
 import { TypeAnimation } from "react-type-animation";
 import { useEffect, useState } from "react";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 const Homepage = () => {
   const [typingStatus, setTypingStatus] = useState("human1");
   const navigate = useNavigate();
-
+  const isMobile = useMediaQuery("(max-width: 900px)");
   return (
     <div className="homepage">
-      <img src="/orbital.png" alt="" className="orbital" />
+      {!isMobile && (
+        <img src="/orbital.png" alt="های-بات" className="orbital" />
+      )}
+
       <div className="left">
         <h1>های بات</h1>
         <h2>مکالمه را شروع کنید</h2>
