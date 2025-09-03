@@ -8,6 +8,8 @@ import "./chatPage.css"; // اطمینان حاصل کنید که این فای�
 import { useGetChats } from "../../hooks/api/chat";
 import { FaStop } from "react-icons/fa6";
 import { FaArrowUp } from "react-icons/fa";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const ChatPage = () => {
   const socket = useSocket();
@@ -205,7 +207,31 @@ const ChatPage = () => {
                 )}
                 {/* حالا این شرط به درستی کار می‌کند */}
                 {message.parts?.[0]?.text && (
-                  <Markdown>{message.parts[0].text}</Markdown>
+                  <Markdown
+                    components={{
+                      // ۲. به Markdown می‌گوییم که تگ code را چطور رندر کند
+                      code(props) {
+                        const { children, className, node, ...rest } = props;
+                        const match = /language-(\w+)/.exec(className || "");
+                        return match ? (
+                          <SyntaxHighlighter
+                            {...rest}
+                            style={vscDarkPlus} // ۳. تم را اعمال کن
+                            language={match[1]}
+                            PreTag="div"
+                          >
+                            {String(children).replace(/\n$/, "")}
+                          </SyntaxHighlighter>
+                        ) : (
+                          <code {...rest} className={className}>
+                            {children}
+                          </code>
+                        );
+                      },
+                    }}
+                  >
+                    {message.parts[0].text}
+                  </Markdown>
                 )}
               </div>
             ))}

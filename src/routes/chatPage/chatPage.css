@@ -43,6 +43,21 @@
       max-width: 80%;
       align-self: flex-end;
     }
+
+    pre {
+      direction: ltr; /* ۱. جهت‌دهی را به چپ-به-راست تغییر بده */
+      text-align: left; /* ۲. متن را چپ‌چین کن */
+      background-color: #1e1e2d; /* ۳. یک پس‌زمینه تیره برای خوانایی بهتر */
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto; /* ۴. اسکرول افقی برای کدهای طولانی */
+      white-space: pre-wrap;
+      margin: 10px 0px; /* برای شکستن خطوط طولانی در صورت نیاز */
+    }
+    code {
+      font-family: "Consolas", "Monaco", "Courier New", monospace;
+      font-size: 14px;
+    }
   }
 }
 
