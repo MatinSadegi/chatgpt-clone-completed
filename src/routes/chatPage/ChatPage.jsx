@@ -18,7 +18,6 @@ const ChatPage = () => {
   } = useChats((state) => state);
   const { id: existingChatId } = useParams(); // ۱. ID را از پارامتر URL بخوان
 
-  // ID نهایی یا از URL می‌آید (برای چت‌های موجود) یا از store (برای چت جدید)
   const historyId = existingChatId || newChatHistoryId;
 
   // ۲. فراخوانی هوک API برای دریافت تاریخچه چت‌های موجود
@@ -185,6 +184,7 @@ const ChatPage = () => {
   //   clearInitialMessage,
   //   isInitialStateSet.current
   // );
+
   return (
     <div className="dashboardPage">
       <div className="chatPage">

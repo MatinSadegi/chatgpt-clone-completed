@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useCreateHistories } from "../../hooks/api/chat";
 import { useChats } from "../../store/chat";
 import { useNavigate } from "react-router-dom";
 import "./dashboardPage.css";
+import { FaArrowUp } from "react-icons/fa";
 
 function DashboardPage() {
   const navigate = useNavigate();
@@ -71,7 +72,7 @@ function DashboardPage() {
             autoComplete="off"
           />
           <button type="submit" disabled={isLoading}>
-            <img src="/arrow.png" alt="Send" />
+            <FaArrowUp size={18} color={"#ffffff"} />
           </button>
         </form>
       </div>
