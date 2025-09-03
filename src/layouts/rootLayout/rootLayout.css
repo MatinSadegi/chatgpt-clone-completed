@@ -1,6 +1,6 @@
 .rootLayout {
   padding: 16px 50px;
-  height: 100vh;
+  height: 100svh;
   display: flex;
   flex-direction: column;
   @media screen and (max-width: 900px) {
